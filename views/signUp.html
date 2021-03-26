@@ -8,8 +8,69 @@
     <link rel="stylesheet" href="../res/css/bootstrap4.5.2.min.css">
     <link rel="stylesheet" href="../res/font/css/font-awesome.min.css">
     <link rel="stylesheet" href="../res/css/global.css">
+    <script src="../js/jquery3.6.0.js"></script>
+    <script src="../js/bootstrap4.5.2.min.js"></script>
+    <style>
+        body{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: url(../res/images/bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #signUp{
+            width: 40%;
+            min-width: 580px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .card{
+            flex-direction: row;
+        }
+        .card-header{
+            flex: 1 1 auto;
+            text-align: center;
+            background-color: #fff;
+        }
+        .card-body{
+            flex:auto;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="signUp">
+        <div class="card py-3">
+            <div class="card-header">
+                <h3 class="h4 py-2">
+                    注册
+                </h3>
+                <img src="../res/images/login.png" alt="">
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                      <label for="username">账号</label>
+                      <input type="email" class="form-control" id="username" placeholder="学号/手机号">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">密码</label>
+                      <input type="password" class="form-control" id="password" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="Rpassword">确认密码</label>
+                        <input type="password" class="form-control" id="Rpassword" placeholder="确认密码">
+                        <small class="form-text text-muted">用户名或密码错误</small>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-block">提交</button>
+                  </form>
+            </div>
+          </div>
+    </div>
 </body>
 </html>
