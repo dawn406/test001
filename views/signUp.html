@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../res/font/css/font-awesome.min.css">
     <link rel="stylesheet" href="../res/css/global.css">
     <script src="../js/jquery3.6.0.js"></script>
-    <script src="../js/bootstrap4.5.2.min.js"></script>
     <style>
         body{
             position: absolute;
@@ -20,7 +19,7 @@
             margin: auto;
             background: url(../res/images/bg.png);
             background-repeat: no-repeat;
-            background-size: cover;
+            background-position: top left;
         }
         #signUp{
             width: 40%;
@@ -53,7 +52,6 @@
                 <img src="../res/images/login.png" alt="">
             </div>
             <div class="card-body">
-                <form>
                     <div class="form-group">
                       <label for="username">账号</label>
                       <input type="email" class="form-control" id="username" placeholder="学号/手机号">
@@ -65,12 +63,46 @@
                     <div class="form-group">
                         <label for="Rpassword">确认密码</label>
                         <input type="password" class="form-control" id="Rpassword" placeholder="确认密码">
-                        <small class="form-text text-muted">用户名或密码错误</small>
+                        <small id="errHint" class="form-text"></small>
                     </div>
-                    <button type="submit" class="btn btn-secondary btn-block">提交</button>
-                  </form>
+                    <button type="submit" id="post" class="btn btn-secondary btn-block">提交</button>
             </div>
           </div>
     </div>
+
+    <script>
+        $(function(){
+
+            /* 提交表单 */
+            $('#post').click(function(){
+                if($('#username').val().trim()==='' || $('#password').val().trim()==='' || $('#Rpassword').val().trim()===''){
+                    console.log('不能为空');
+                    return;
+                }
+                const data = {
+                    username:$('#username').val(),
+                    password:$('#password').val()
+                };
+                $.post('http://localhost:3000/register',data,function(res){
+                    console.log(res);
+                },"json")
+            });
+
+            /* 检测密码是否一致 */
+            $('#Rpassword').blur(function(){
+                checkPsw();
+            }).focus(function(){
+                $('#errHint').hide()
+            })
+            function checkPsw(){
+                if($('#password').val()!==$('#Rpassword').val()){
+                    $('#errHint').css('color','red').html('密码不一致哦~').show()
+                }
+            }
+
+
+
+        })
+    </script>
 </body>
 </html>
